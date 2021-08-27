@@ -5,11 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public int maxHealth = 100;
+    int currentHealth;
+
     private Transform target;
     private NavMeshAgent agent;
+    private Renderer cubeRenderer;
 
     public GameObject area;
-    public GameObject enemy;
     private Vector3 areaOffset = new Vector3(0,1,0);
     private Vector3 areaDetector;
     private Vector3 startingPosition;
@@ -20,7 +23,9 @@ public class EnemyController : MonoBehaviour
         areaDetector = area.transform.position + areaOffset;
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        startingPosition = enemy.transform.position;
+        startingPosition = transform.position;
+        currentHealth = maxHealth;
+        cubeRenderer = GetComponentInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -32,6 +37,25 @@ public class EnemyController : MonoBehaviour
             agent.SetDestination(target.position);
         else
             agent.SetDestination(startingPosition);
+        
+    }
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        //play hurt animation
+
+        if(currentHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    void die()
+    {
+        Debug.Log("Enemy died");
+        cubeRenderer.material.SetColor("_Color", Color.red);
         
     }
 
