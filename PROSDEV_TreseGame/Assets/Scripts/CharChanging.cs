@@ -14,7 +14,7 @@ public class CharChanging : MonoBehaviour
     private float nextAttackTime = 0f;
     private Vector3 attackArea = new Vector3(0.5f, 0, 0);
     private int activeAttackpoint = 0;
-    
+
     private enum Jobs {
     Warrior,
     Archer,
@@ -39,14 +39,14 @@ public class CharChanging : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //Debug.Log("LMB Click");
-                normalAttack();
+                NormalAttack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
         
     }
 
-    void normalAttack()
+    void NormalAttack()
     {
         //play animation
         //detect enemies in range
@@ -58,17 +58,17 @@ public class CharChanging : MonoBehaviour
         foreach(Collider enemy in hitEnemiesSide)
         {
             Debug.Log("Side: Hit " + enemy.name);
-            enemy.GetComponent<EnemyController>().takeDamage(attackDamage);
+            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
         }
         foreach (Collider enemy in hitEnemiesUp)
         {
             Debug.Log("Up: Hit " + enemy.name);
-            enemy.GetComponent<EnemyController>().takeDamage(attackDamage);
+            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
         }
         foreach (Collider enemy in hitEnemiesDown)
         {
             Debug.Log("Down: Hit " + enemy.name);
-            enemy.GetComponent<EnemyController>().takeDamage(attackDamage);
+            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
         }
     }
 
