@@ -25,6 +25,6 @@ public class MoveMainChar : MonoBehaviour
 
     void MoveCharacter()
     {
-        rb.MovePosition(transform.position + change * moveSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + change * moveSpeed * Time.fixedDeltaTime);
     }
 }

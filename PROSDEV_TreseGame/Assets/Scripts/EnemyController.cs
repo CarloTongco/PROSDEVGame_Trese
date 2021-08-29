@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        areaDetector = area.transform.position + areaOffset;
+        //areaDetector = area.transform.position + areaOffset;
+        player = GameObject.Find("MC").GetComponent<PlayerHealth>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         startingPosition = transform.position;
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
         else
             agent.SetDestination(startingPosition);
 
-        Debug.Log(playerDistance);
+        //Debug.Log(playerDistance);
 
         if(playerDistance <= 1.25)
         {
@@ -59,7 +60,7 @@ public class EnemyController : MonoBehaviour
     {
         //Play attack anim
 
-        Debug.Log("Enemy is attacking the player! Player is taking " + damage + " damage.");
+        //Debug.Log("Enemy is attacking the player! Player is taking " + damage + " damage.");
         player.PlayerTakeDamage(damage); //Reduce player health
         attackDelay = attackCooldown;
 
@@ -82,9 +83,16 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Enemy died");
         cubeRenderer.material.SetColor("_Color", Color.red);
+        agent.isStopped = true;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemyCounter>().removeEnemy();
 
         //Destroy Enemy Game Object
-        
+        Destroy(gameObject);
+    }
+
+    public void setArea(GameObject assignedArea)
+    {
+        areaDetector = assignedArea.transform.position + areaOffset;
     }
 
     private void OnDrawGizmosSelected()

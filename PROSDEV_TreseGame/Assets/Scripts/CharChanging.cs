@@ -79,6 +79,11 @@ public class CharChanging : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(1, 1, 1));
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoints == null)
