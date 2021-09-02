@@ -32,7 +32,7 @@ public class FireProjectiles : MonoBehaviour
         float distance;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(transform.position, ray.direction, out distance, 10, ~ignoreLayers))
+        if (Physics.Raycast(transform.position, ray.direction, out hit, 10, ~ignoreLayers))
         {
             //GameObject projectile = ProjectilePool.projectilePoolInstance.getProjectile();
             //projectile.transform.position = transform.position;
@@ -41,7 +41,7 @@ public class FireProjectiles : MonoBehaviour
             //projectile.GetComponent<RangedAttackProjectile>().setMoveDirection(hit.point);
             //Debug.Log(hit.point);
 
-            Debug.DrawRay(transform.position, ray.GetPoint(distance), Color.yellow, 10f);
+            Debug.DrawRay(transform.position, ray.GetPoint(hit), Color.yellow, 10f);
             Debug.Log("Hit");
         }
     }
