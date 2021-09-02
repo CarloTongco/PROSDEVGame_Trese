@@ -46,12 +46,12 @@ public class EnemyController : MonoBehaviour
 
         //Debug.Log(playerDistance);
 
-        if(playerDistance <= 1.25)
+        if(playerDistance <= 1.35)
         {
-            attackDelay -= Time.deltaTime;
-            if(attackDelay <= 0.0f)
+            this.attackDelay -= Time.deltaTime;
+            if(this.attackDelay <= 0.0f)
             {
-                AttackPlayer(attackDamage);
+                this.AttackPlayer(attackDamage);
             }
         }
     }

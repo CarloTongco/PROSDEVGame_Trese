@@ -18,7 +18,11 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player has died!");
+            //Destroy(this.gameObject);
+        }
     }
 
     public void PlayerTakeDamage(int damage)
