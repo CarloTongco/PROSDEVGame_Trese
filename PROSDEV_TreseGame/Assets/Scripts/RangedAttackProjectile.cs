@@ -6,10 +6,11 @@ public class RangedAttackProjectile : MonoBehaviour
 {
     private Vector3 moveDirection;
     public float moveSpeed;
+    public float distance;
 
     private void OnEnable()
     {
-        Invoke("Destroy", 3f);
+        Invoke("Destroy", 0.5f);
     }
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class RangedAttackProjectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }

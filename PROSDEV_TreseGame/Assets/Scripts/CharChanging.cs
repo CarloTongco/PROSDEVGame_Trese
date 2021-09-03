@@ -16,13 +16,16 @@ public class CharChanging : MonoBehaviour
 
     private Material currMaterial;
     private float nextAttackTime = 0f;
-    private Vector3 attackArea = new Vector3(0.5f, 0, 0);
     private int activeAttackpoint = 0;
+    private FireProjectiles fireProjectiles;
+    private bool isRanged = false;
 
     // Start is called before the first frame update
     void Start()
     {
         currMaterial = GameObject.Find("MainCharGFX").GetComponent<MeshRenderer>().material;
+        fireProjectiles = GetComponent<FireProjectiles>();
+        fireProjectiles.enabled = false;
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class CharChanging : MonoBehaviour
 
         if(Time.time >= nextAttackTime)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !isRanged)
             {
                 //Debug.Log("LMB Click");
                 normalAttack();
@@ -71,17 +74,27 @@ public class CharChanging : MonoBehaviour
         switch (changeInto)
         {
             case 1: currMaterial.mainTexture = warrior;
+                fireProjectiles.enabled = false;
+                isRanged = false;
                 break;
             case 2: currMaterial.mainTexture = archer;
+                fireProjectiles.enabled = true;
+                isRanged = true;
                 break;
             case 3: currMaterial.mainTexture = healer;
+                fireProjectiles.enabled = true;
+                isRanged = true;
                 break;
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(1, 1, 1));
+        Gizmos.DrawWireCube(gameObject.transform.position, new Vector3(0.6f, 1, 0.05f));
+        //if (attackPoints == null)
+        //    return;
+
+        //Gizmos.DrawWireSphere(attackPoints[activeAttackpoint].position, attackRange);
     }
 
     private void OnDrawGizmosSelected()

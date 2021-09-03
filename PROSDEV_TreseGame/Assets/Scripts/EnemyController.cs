@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     public PlayerHealth player;
 
     public GameObject area;
+    public GameObject healthPickup;
+
     private Vector3 areaOffset = new Vector3(0,1,0);
     private Vector3 areaDetector;
     private Vector3 startingPosition;
@@ -39,7 +41,7 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(target.position, areaDetector);
         float playerDistance = Vector3.Distance(target.position, transform.position);
 
-        if (distance <= 7.5)
+        if (distance <= 10)
             agent.SetDestination(target.position);
         else
             agent.SetDestination(startingPosition);
@@ -67,6 +69,13 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+            Debug.Log("Collided");
+            TakeDamage(40);
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -86,8 +95,19 @@ public class EnemyController : MonoBehaviour
         agent.isStopped = true;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemyCounter>().removeEnemy();
 
+        float random = Random.Range(0f, 4f);
+        Debug.Log(random);
+
+        //spawn health pickup
+        if (random <= 1f)
+            {
+                Instantiate(healthPickup, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                Debug.Log("spawn health");
+            }
+        
         //Destroy Enemy Game Object
         Destroy(gameObject);
+
     }
 
     public void setArea(GameObject assignedArea)

@@ -180,5 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c0c5f0c7fe2af44b26632ca5e5a0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDamage: 5
   maxHealth: 100
+  currentHealth: 0
+  player: {fileID: 0}
   area: {fileID: 0}
+  healthPickup: {fileID: 8710964092088862834, guid: 7e0ebd9b91d1b5e46a263d43af2bae32, type: 3}

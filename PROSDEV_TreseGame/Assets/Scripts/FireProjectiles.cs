@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireProjectiles : MonoBehaviour
 {
+    public LayerMask selectLayers;
     public LayerMask ignoreLayers;
     private Ray ray;
     private RaycastHit hit;
@@ -28,21 +29,27 @@ public class FireProjectiles : MonoBehaviour
 
     public void fire()
     {
-        //Vector3 rayDir = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.z+0.1f);
-        float distance;
+        Vector3 rayDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        rayDir.y = 0f;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(transform.position, ray.direction, out hit, 10, ~ignoreLayers))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))
         {
-            //GameObject projectile = ProjectilePool.projectilePoolInstance.getProjectile();
-            //projectile.transform.position = transform.position;
-            //projectile.transform.rotation = transform.rotation;
-            //projectile.SetActive(true);
-            //projectile.GetComponent<RangedAttackProjectile>().setMoveDirection(hit.point);
+            Vector3 mousePos = hit.point + new Vector3(0, 0.5f, 0);
+            //Debug.Log(rayDir);
+            GameObject projectile = ProjectilePool.projectilePoolInstance.getProjectile();
+            projectile.transform.position = transform.position;
+            projectile.transform.rotation = transform.rotation;
+            projectile.SetActive(true);
+            projectile.GetComponent<RangedAttackProjectile>().setMoveDirection(mousePos - transform.position);
+
+            //if (hit.collider.CompareTag("Enemy"))
+            //    Debug.Log("enemy damaged");
+
             //Debug.Log(hit.point);
 
-            Debug.DrawRay(transform.position, ray.GetPoint(hit), Color.yellow, 10f);
-            Debug.Log("Hit");
+            //Debug.DrawRay(transform.position, mousePos - transform.position, Color.yellow, 10f);
+            //Debug.Log("Hit");
         }
     }
 }

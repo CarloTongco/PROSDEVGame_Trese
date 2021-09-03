@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player has died!");
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -30,4 +30,16 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
+    public void addHealth()
+    {
+        if ((maxHealth - currentHealth) >= 20)
+            currentHealth += 20;
+        else
+            currentHealth += (maxHealth - currentHealth);
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+    
 }

@@ -47,6 +47,8 @@ public class SpawnArea : MonoBehaviour
                 wall.GetComponent<BoxCollider>().enabled = false;
             }
             currBoxCollider.enabled = false;
+            if (GetComponentInParent<OpenPortal>() != null)
+                GetComponentInParent<OpenPortal>().openPortal();
         }
     }
 }
