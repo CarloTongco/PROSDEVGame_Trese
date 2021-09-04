@@ -29,15 +29,15 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    IEnumerator enemySpawn()
-    {
-        while(enemyCount <= maxEnemies)
-        {
-            spawnPos = new Vector3(Random.Range(currArea.transform.position.x - 7.5f, currArea.transform.position.x + 7.5f), 0, Random.Range(currArea.transform.position.z - 7.5f, currArea.transform.position.z + 7.5f));
-            Instantiate(enemy, spawnPos, Quaternion.identity).GetComponent<EnemyController>().setArea(currArea);
-            yield return new WaitForSeconds(0.0001f);
-            enemyCount += 1;
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemyCounter>().addEnemy();
-        }
-    }
+    //IEnumerator enemySpawn()
+    //{
+    //    while(enemyCount <= maxEnemies)
+    //    {
+    //        spawnPos = new Vector3(Random.Range(currArea.transform.position.x - 7.5f, currArea.transform.position.x + 7.5f), 0, Random.Range(currArea.transform.position.z - 7.5f, currArea.transform.position.z + 7.5f));
+    //        Instantiate(enemy, spawnPos, Quaternion.identity).GetComponent<EnemyController>().setArea(currArea);
+    //        yield return new WaitForSeconds(0.0001f);
+    //        enemyCount += 1;
+    //        GameObject.FindGameObjectWithTag("GameController").GetComponent<EnemyCounter>().addEnemy();
+    //    }
+    //}
 }

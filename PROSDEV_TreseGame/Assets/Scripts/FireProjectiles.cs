@@ -12,8 +12,6 @@ public class FireProjectiles : MonoBehaviour
 
     public int bulletsAmount = 1;
 
-    private Vector3 moveDir;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +27,6 @@ public class FireProjectiles : MonoBehaviour
 
     public void fire()
     {
-        Vector3 rayDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        rayDir.y = 0f;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~ignoreLayers))

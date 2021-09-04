@@ -38,10 +38,10 @@ public class CharChanging : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
             changeClass(3);
 
-        if (Input.GetKey(KeyCode.D))
-            activeAttackpoint = 0;
-        else if (Input.GetKey(KeyCode.A))
-            activeAttackpoint = 1;
+        //if (Input.GetKey(KeyCode.D))
+        //    activeAttackpoint = 0;
+        //else if (Input.GetKey(KeyCode.A))
+        //    activeAttackpoint = 1;
 
         if(Time.time >= nextAttackTime)
         {
@@ -86,6 +86,16 @@ public class CharChanging : MonoBehaviour
                 isRanged = true;
                 break;
         }
+    }
+
+    public void setActivePoint(int activePoint)
+    {
+        this.activeAttackpoint = activePoint;
+    }
+
+    public int getActiveAttackPoint()
+    {
+        return this.activeAttackpoint;
     }
 
     private void OnDrawGizmos()
