@@ -19,7 +19,7 @@ public class RangedAttackProjectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
@@ -37,5 +37,14 @@ public class RangedAttackProjectile : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Debug.Log("Collided here");
+            other.GetComponent<EnemyController>().TakeDamage(40);
+        }
     }
 }

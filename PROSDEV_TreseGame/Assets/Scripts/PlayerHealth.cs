@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = Mathf.Clamp(currentHealth, 0, 100);
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -41,5 +42,15 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
-    
+    public void healthSkill()
+    {
+        currentHealth += 3;
+        healthBar.SetHealth(currentHealth);
+        
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
 }

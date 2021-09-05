@@ -20,12 +20,24 @@ public class CharChanging : MonoBehaviour
     private FireProjectiles fireProjectiles;
     private bool isRanged = false;
 
+    //skill scripts
+    private HealerSkill healerSkill;
+    private SwordsmanSkill swordsmanSkill;
+    private ArcherSkill archerSkill;
+
     // Start is called before the first frame update
     void Start()
     {
+        healerSkill = GetComponent<HealerSkill>();
+        swordsmanSkill = GetComponent<SwordsmanSkill>();
+        archerSkill = GetComponent<ArcherSkill>();
+
         currMaterial = GameObject.Find("MainCharGFX").GetComponent<MeshRenderer>().material;
         fireProjectiles = GetComponent<FireProjectiles>();
         fireProjectiles.enabled = false;
+        swordsmanSkill.enabled = true;
+        healerSkill.enabled = false;
+        archerSkill.enabled = false;
     }
 
     // Update is called once per frame
@@ -75,14 +87,23 @@ public class CharChanging : MonoBehaviour
         {
             case 1: currMaterial.mainTexture = warrior;
                 fireProjectiles.enabled = false;
+                swordsmanSkill.enabled = true;
+                healerSkill.enabled = false;
+                archerSkill.enabled = false;
                 isRanged = false;
                 break;
             case 2: currMaterial.mainTexture = archer;
                 fireProjectiles.enabled = true;
+                swordsmanSkill.enabled = false;
+                healerSkill.enabled = false;
+                archerSkill.enabled = true;
                 isRanged = true;
                 break;
             case 3: currMaterial.mainTexture = healer;
                 fireProjectiles.enabled = true;
+                swordsmanSkill.enabled = false;
+                healerSkill.enabled = true;
+                archerSkill.enabled = false;
                 isRanged = true;
                 break;
         }

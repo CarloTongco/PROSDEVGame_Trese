@@ -671,7 +671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &578296573 stripped
 Transform:
@@ -1081,6 +1081,8 @@ GameObject:
   - component: {fileID: 1745512492}
   - component: {fileID: 1745512494}
   - component: {fileID: 1745512495}
+  - component: {fileID: 1745512496}
+  - component: {fileID: 1745512497}
   m_Layer: 10
   m_Name: MC
   m_TagString: Player
@@ -1198,7 +1200,7 @@ Transform:
   - {fileID: 157574317}
   - {fileID: 373566634}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1745512491
 MonoBehaviour:
@@ -1237,7 +1239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 25
   healthBar: {fileID: 1421889340}
 --- !u!114 &1745512493
 MonoBehaviour:
@@ -1270,7 +1272,8 @@ MonoBehaviour:
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 128
-  bulletsAmount: 1
+  nextFireTime: 0
+  cooldown: 0.5
 --- !u!114 &1745512495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,6 +1297,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 100
+  cooldown: 1
+--- !u!114 &1745512496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745512484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06fbabe936d8314eac862cf83ae0330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextVolleyTime: 0.15
+  cooldown: 1
+  ignorLayers:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1745512497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745512484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f93519fc0f39a4d830e5f5689b3bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextHealTime: 0.15
   cooldown: 1
 --- !u!1 &1869258923
 GameObject:

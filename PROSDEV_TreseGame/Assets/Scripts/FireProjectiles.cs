@@ -10,19 +10,30 @@ public class FireProjectiles : MonoBehaviour
     private RaycastHit hit;
     private Plane plane;
 
-    public int bulletsAmount = 1;
+    private int bulletsAmount = 1;
+
+    public float nextFireTime;
+    public float cooldown;
 
     // Start is called before the first frame update
     void Start()
     {
-        plane = new Plane(Vector3.up, 0);
+        //plane = new Plane(Vector3.up, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            fire();
+        //if (Input.GetMouseButtonDown(0))
+        //    fire();
+        if (Time.time >= nextFireTime)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                fire();
+                nextFireTime = (Time.time + 1f) / cooldown;
+            }
+        }
     }
 
     public void fire()
