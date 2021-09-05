@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class FireProjectiles : MonoBehaviour
 {
-    public LayerMask selectLayers;
+    //public LayerMask selectLayers;
     public LayerMask ignoreLayers;
     private Ray ray;
     private RaycastHit hit;
-    private Plane plane;
-
-    private int bulletsAmount = 1;
 
     public float nextFireTime;
     public float cooldown;
@@ -24,16 +21,16 @@ public class FireProjectiles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //    fire();
-        if (Time.time >= nextFireTime)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                fire();
-                nextFireTime = (Time.time + 1f) / cooldown;
-            }
-        }
+        if (Input.GetMouseButtonDown(0))
+            fire();
+        //if (Time.time >= nextFireTime)
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        fire();
+        //        nextFireTime = (Time.time + 1f) / cooldown;
+        //    }
+        //}
     }
 
     public void fire()
