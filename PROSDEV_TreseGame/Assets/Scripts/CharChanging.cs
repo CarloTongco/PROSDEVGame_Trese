@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharChanging : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class CharChanging : MonoBehaviour
     private HealerSkill healerSkill;
     private SwordsmanSkill swordsmanSkill;
     private ArcherSkill archerSkill;
+
+    //skill UI icons
+    [SerializeField] private GameObject swordsmanIcon;
+    [SerializeField] private GameObject archerIcon;
+    [SerializeField] private GameObject healerIcon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +98,9 @@ public class CharChanging : MonoBehaviour
                 healerSkill.enabled = false;
                 archerSkill.enabled = false;
                 isRanged = false;
+                swordsmanIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+                archerIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
+                healerIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
                 break;
             case 2: currMaterial.mainTexture = archer;
                 fireProjectiles.enabled = true;
@@ -98,6 +108,9 @@ public class CharChanging : MonoBehaviour
                 healerSkill.enabled = false;
                 archerSkill.enabled = true;
                 isRanged = true;
+                swordsmanIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
+                archerIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+                healerIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
                 break;
             case 3: currMaterial.mainTexture = healer;
                 fireProjectiles.enabled = true;
@@ -105,6 +118,9 @@ public class CharChanging : MonoBehaviour
                 healerSkill.enabled = true;
                 archerSkill.enabled = false;
                 isRanged = true;
+                swordsmanIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
+                archerIcon.GetComponent<Image>().color = new Color32(0, 255, 15, 255);
+                healerIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                 break;
         }
     }
