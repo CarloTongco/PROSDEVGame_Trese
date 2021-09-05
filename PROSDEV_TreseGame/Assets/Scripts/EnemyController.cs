@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 areaOffset = new Vector3(0,1,0);
     private Vector3 areaDetector;
     private Vector3 startingPosition;
+    private Texture currTexture;
 
     // Start is called before the first frame update
     void Start()
